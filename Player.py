@@ -7,7 +7,7 @@ class Player:
     def welcome (self):               #Présente le joeur
         print("Bienvenue",self.name,"/ HP:",self.hp,"/ Att:",self.att)
 
-    def get_name(self):
+    def get_name(self):                 #Retourne le prénom
         return self.name
 
     def get_hp(self):
@@ -16,11 +16,11 @@ class Player:
     def get_att(self):
         return self.att
 
-    def take_damage(self,take_dammage):
+    def take_damage(self,take_dammage):             #self prend des dégats
         self.hp -= take_dammage
         print("PV restant(s):",self.hp)
 
-    def attack_target(self,target):
+    def attack_target(self,target):                #self inflige des dégats a target
         print(self.name,"attaque",target.name,"et lui inflige",self.att,"dégat(s)")
         target.take_damage(self.att)
 
