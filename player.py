@@ -1,0 +1,39 @@
+class Player:
+    def __init__(self,name,hp,att):             #Id card
+        self.name = name
+        self.hp = hp
+        self.att = att
+        self.weapon=None
+
+    def welcome (self):               #Présente le joeur
+        print("Bienvenue",self.name,"/ HP:",self.hp,"/ Att:",self.att)
+
+    def get_name(self):                 #Retourne le prénom
+        return self.name
+
+    def get_hp(self):
+        return self.hp
+
+    def get_att(self):
+        return self.att
+
+    def take_damage(self,damage):             #self prend des dégats
+        self.hp -= damage
+        print("PV restant(s):",self.hp)
+
+    def attack_target(self,target):                #self inflige des dégats a target (dégats d'arme si équipée)
+        if self.has_weapon():
+            print(self.name, "attaque", target.name, "et lui inflige",self.weapon.get_damage_value(), "dégat(s)")
+            target.take_damage(self.weapon.get_damage_value())
+        else:
+            print(self.name,"attaque",target.name,"et lui inflige",self.att,"dégat(s)")
+            target.take_damage(self.att)
+
+    def has_weapon(self):                           #verifie si self posséde une arme
+        return self.weapon is not None
+
+    def set_weapon(self,weapon):                    #Remplace l'arme de self par une nouvelle
+        print(self.name,"a équipé",'"',weapon.name,'"',"(Dégats:",weapon.get_damage_value(),")")
+        self.weapon=weapon
+
+
