@@ -7,7 +7,7 @@ class Player:
         self.weapon=None
 
     def welcome (self):               #Présente le joeur
-        print("Bienvenue",self.name,"/ HP:",self.hp,"/ Att:",self.att)
+        print("Bienvenue",self.name,"/ PV:",self.hp,"/ Att:",self.att)
 
     def get_name(self):                 #Retourne le prénom
         return self.name
