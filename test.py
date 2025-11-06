@@ -3,7 +3,7 @@ from player import Player
 from weapon import Weapon
 from armor import Armor
 player1=Player("Kid",100,5)
-gode=Weapon("gode",25)
+gode=Weapon("Lol",25)
 armure_raul=Armor("armure raul",10)
 Raul=Mob("Raul",500,gode,armure_raul)
 player1.welcome()
