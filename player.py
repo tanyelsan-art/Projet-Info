@@ -1,8 +1,9 @@
 class Player:
-    def __init__(self,name,hp,att):             #Id card
+    def __init__(self,name,hp,att,armor):             #Id card
         self.name = name
         self.hp = hp
         self.att = att
+        self.armor =None
         self.weapon=None
 
     def welcome (self):               #Présente le joeur
@@ -16,6 +17,8 @@ class Player:
 
     def get_att(self):
         return self.att
+    def get_armor(self):
+        return self.armor
 
     def take_damage(self,damage):             #self prend des dégats
         self.hp -= damage
@@ -36,4 +39,9 @@ class Player:
         print(self.name,"a équipé",'"',weapon.name,'"',"(Dégats:",weapon.get_damage_value(),")")
         self.weapon=weapon
 
+    def has_armor(self):
+        return self.armor is not None
 
+    def set_armor(self,armor):
+        print(self.name,"a équipé",'"',armor.name,'"',"(Points d'armure:",armor.get_shield_value(),")")
+        self.armor=armor
