@@ -1,9 +1,9 @@
 class Armor:
-    def __init__(self,name,shield):
+    def __init__(self,name,armor_point):
         self.name = name
-        self.shield = shield
-    def get_shield_value(self):
-        return self.shield
+        self.armor_point = armor_point
+    def get_armor_point(self):
+        return self.armor_point
     def get_name(self):
         return self.name
 

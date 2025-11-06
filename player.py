@@ -1,5 +1,5 @@
 class Player:
-    def __init__(self,name,hp,att,armor):             #Id card
+    def __init__(self,name,hp,att):             #Id card
         self.name = name
         self.hp = hp
         self.att = att
@@ -26,11 +26,20 @@ class Player:
 
     def attack_target(self,target):                #self inflige des dégats a target (dégats d'arme si équipée)
         if self.has_weapon():
-            print(self.name, "attaque", target.name, "et lui inflige",self.weapon.get_damage_value(), "dégat(s)")
-            target.take_damage(self.weapon.get_damage_value())
+            if target.has_armor():
+                damage=self.weapon.get_damage_value()-target.armor.get_armor_point()
+            else:
+                damage=self.weapon.get_damage_value()
         else:
-            print(self.name,"attaque",target.name,"et lui inflige",self.att,"dégat(s)")
-            target.take_damage(self.att)
+            if target.has_armor():
+                damage=self.att-target.armor.get_armor_point()
+            else:
+                damage=self.att
+        if damage>0:
+            print(self.name, "attaque", target.name, "et lui inflige",damage, "dégat(s)")
+            target.take_damage(damage)
+        else:
+            print(self.name,"attaque",target.name,"mais c'est inéfficace")
 
     def has_weapon(self):                           #verifie si self posséde une arme
         return self.weapon is not None
@@ -43,5 +52,5 @@ class Player:
         return self.armor is not None
 
     def set_armor(self,armor):
-        print(self.name,"a équipé",'"',armor.name,'"',"(Points d'armure:",armor.get_shield_value(),")")
+        print(self.name,"a équipé",'"',armor.name,'"',"(Points d'armure:",armor.get_armor_point(),")")
         self.armor=armor
