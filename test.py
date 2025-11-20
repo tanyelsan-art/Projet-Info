@@ -2,6 +2,11 @@ from mob import Mob
 from player import Player
 from weapon import Weapon
 from armor import Armor
+
+import json
+import random
+
+
 player1=Player("Kid",100,5)
 gode=Weapon("Lol",25)
 armure_raul=Armor("armure raul",10)
@@ -13,4 +18,12 @@ player1.attack_target(Raul)
 deodorant=Weapon("deodorant",50)
 player1.set_weapon(deodorant)
 player1.attack_target(Raul)
+
+
+
+
+
+
+
+
 
