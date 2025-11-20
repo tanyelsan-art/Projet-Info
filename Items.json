@@ -1,0 +1,114 @@
+[
+  {"name": "potion",
+  "description": "soigne 30 PV",
+  "type": "heal",
+  "value": 30},
+  {"name": "potion",
+  "description": "soigne 30 PV",
+  "type": "heal",
+  "value": 30},
+ {"name": "potion",
+  "description": "soigne 30 PV",
+  "type": "heal",
+  "value": 30},
+ {"name": "potion",
+  "description": "soigne 30 PV",
+  "type": "heal",
+  "value": 30},
+ {"name": "potion",
+  "description": "soigne 30 PV",
+  "type": "heal",
+  "value": 30},
+
+
+  {"name": "Death Note",
+    "description": "One shot l'ennemi",
+    "type": "offensive",
+    "value": 999999999
+  },
+  {
+    "name": "Haricots magiques (senzu)",
+    "description": "Rétablit tout les PV (merci maitre Karin)",
+    "type": "heal",
+    "value": 10000
+  },
+  {
+    "name": "Haricots magiques (senzu)",
+    "description": "Rétablit tout les PV (merci maitre Karin)",
+    "type": "heal",
+    "value": 10000
+  },
+  {
+  "name": "Champignon 1 UP",
+    "description": "Augmente les PV max de 50",
+    "type": "buff_HP",
+    "value": 50
+  },
+  {
+  "name": "Champignon 1 UP",
+    "description": "Augmente les PV max de 50",
+    "type": "buff_HP",
+    "value": 50
+  },
+  {
+  "name": "Champignon 1 UP",
+    "description": "Augmente les PV max de 50",
+    "type": "buff_HP",
+    "value": 50
+  },
+  {
+  "name": "Kit de soin",
+    "description": "Soigne 50 HP",
+    "type": "heal",
+    "value": 50
+  },
+  {
+  "name": "Kit de soin",
+    "description": "Soigne 50 HP",
+    "type": "heal",
+    "value": 50
+  },
+  {
+  "name": "Kit de soin",
+    "description": "Soigne 50 HP",
+    "type": "heal",
+    "value": 50
+  },
+  {
+  "name": "Livre enchanté (Sharpness III)",
+  "description": "Augmente votre att de manière permanente",
+    "type": "buff_att",
+    "value": 3
+  },{
+  "name": "Livre enchanté (Sharpness III)",
+  "description": "Augmente votre att de manière permanente",
+    "type": "buff_att",
+    "value": 3
+  },
+  {
+  "name": "Carapace bleue",
+  "description": "Fonce sur l'ennemi et inflige 50 dégats (à vous la première place)",
+  "type": "offensive",
+  "value": 50
+  },
+  {
+  "name": "Carapace bleue",
+  "description": "Fonce sur l'ennemi et inflige 50 dégats (à vous la première place)",
+  "type": "offensive",
+  "value": 50
+  },
+  {"name": "Golden apple",
+    "description": "Augmente les PV max de 30",
+    "type": "buff_HP",
+    "value": 30
+  },
+ {"name": "Golden apple",
+    "description": "Augmente les PV max de 30",
+    "type": "buff_HP",
+    "value": 30
+  },  {"name": "Golden apple",
+    "description": "Augmente les PV max de 30",
+    "type": "buff_HP",
+    "value": 30
+  } ]
+

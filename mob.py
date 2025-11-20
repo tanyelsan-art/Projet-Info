@@ -57,33 +57,33 @@ class Mob:
 
 
 
-def spawn_mob(level_number):
-    with open("data/mob_dico.json","r",encoding="utf-8") as f:
-        mobs_list =json.load(f)
-    info_mob=random.choice(mobs_list)                           #Choisi un mob random
-    difficulty_coef=1+(level_number*0.1)
+    def spawn_mob(level_number):
+        with open("data/mob_dico.json","r",encoding="utf-8") as f:
+            mobs_list =json.load(f)
+        info_mob=random.choice(mobs_list)                           #Choisi un mob random
+        difficulty_coef=1+(level_number*0.1)
 
-    info_weapon=info_mob["weapon_ref"]                          #Construction de l'arme du mob (objet)
-    final_damage=int(info_weapon["base_damage"]*difficulty_coef)
+        info_weapon=info_mob["weapon_ref"]                          #Construction de l'arme du mob (objet)
+        final_damage=int(info_weapon["base_damage"]*difficulty_coef)
 
-    mob_weapon=Weapon(
-        name=info_weapon["name"],
-        damage=final_damage,
-        description="Arme du monstre")
+        mob_weapon=Weapon(
+            name=info_weapon["name"],
+            damage=final_damage,
+            description="Arme du monstre")
 
-    armor_val=info_mob["armor_points"]                          #Construction de l'armure (objet)
-    armor_val=int(armor_val*difficulty_coef)
+        armor_val=info_mob["armor_points"]                          #Construction de l'armure (objet)
+        armor_val=int(armor_val*difficulty_coef)
 
-    mob_armor=Armor(
-        name="Armure du monstre",
-        armor_point=armor_val)
+        mob_armor=Armor(
+            name="Armure du monstre",
+            armor_point=armor_val)
 
-    final_HP=int(info_mob["base_HP"]*difficulty_coef)
-    new_mob=Mob(
-        name=info_mob["name"],
-        hp=final_HP,
-        weapon=mob_weapon,                      #Objet crée juste au dessus
-        armor=mob_armor)
-    return new_mob
+        final_HP=int(info_mob["base_HP"]*difficulty_coef)
+        new_mob=Mob(
+            name=info_mob["name"],
+            hp=final_HP,
+            weapon=mob_weapon,                      #Objet crée juste au dessus
+            armor=mob_armor)
+        return new_mob
 
 
