@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Gang de gobelin",
+    "base_HP": 80,
+    "weapon_ref": {"name": "Lances et dagues","base_damage":10},
+    "armor_points": 5
+  },
+  {
+    "name": "saibaman",
+    "base_HP": 60,
+    "weapon_ref": {"name": "Crachat acide (Hcl)","base_damage": 30},
+     "armor_points": 5
+  }
+
+
+
+]
