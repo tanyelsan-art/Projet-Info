@@ -57,7 +57,7 @@ class Mob:
 
 
 
-    def spawn_mob(level_number):
+def spawn_mob(level_number):
         with open("data/mob_dico.json","r",encoding="utf-8") as f:
             mobs_list =json.load(f)
         info_mob=random.choice(mobs_list)                           #Choisi un mob random

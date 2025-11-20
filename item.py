@@ -21,7 +21,7 @@ class Item:
 
 
 
-    def generate_items(level_number):
+def generate_items(level_number):
         with open('data/items.json',"r",encoding="utf-8") as item_file:
             items_list=json.load(item_file)
         info_item=random.choice(items_list)                 #Choisi un item random pour la fin de niveau
