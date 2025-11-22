@@ -8,8 +8,16 @@ from player import Player
 from mob import generate_mob
 def game_launcher():
     print("Bienvenue dans le Xenoverse jeune aventurier")
+    time.sleep(1)
     print("Ici, nul ne sait sur quoi tu vas tomber…(si ce n'est des entitées dont on ne posséde pas les droits d'auteur:))")
+    time.sleep(1)
     print("Alors prépare toi au pire comme au meilleur. Bon courage!, tu vas en avoir besoin.")
+    time.sleep(1)
+    print("Inutile de vous éxpliquez le fonctionnement, vous êtes si intelligent!")
+    time.sleep(1)
+    print("Une dernière chose, avant d'attaquer vous lancerez un dé a 20 face.")
+    time.sleep(0.5)
+    print("Et selon le résultat vous toucherez +/- votre adversaire alors j'espère que c'est votre jour de chance :)")
 def set_seed():
     print("Voulez vous jouez avec une seed ? (laissez vide pour aléatoire)")
     seed_input=input("Seed->")
@@ -22,10 +30,12 @@ def set_seed():
 
 def combat(player,mob):
     print("Un monstre sauvage apparaît!!!(pas le budget pour la musique)")
+    time.sleep(1)
     mob.welcome()
 
     while player.hp>0 and mob.hp>0:
         print(f"{player.name} ({player.hp}/{player.hp_max}PV) VS {mob.name} ({mob.hp}PV)")
+        time.sleep(1)
         print("1) Attaquer")
         print(f"2) Boire potion ({player.potions} restante(s) )")
         print(f"3) Inventaire")
@@ -67,9 +77,12 @@ def combat(player,mob):
             return True
 
         if action_effectue:
-            time.sleep(0.5)
+            print('============================================================')
+            time.sleep(3)
             print("Tour du monstre:")
             mob.attack_target(player)
+            print('============================================================')
+
 
         if player.hp<=0:
             print("Vous avez succombé…")
@@ -81,7 +94,7 @@ def main():                                     #Lance le jeu
     set_seed()
     print("Quel est ton nom, jeune padawan?")
     name=input("->")
-    joueur=Player(name,100,10)              #defini le joueur grace a la class Player
+    joueur=Player(name,120,50)              #defini le joueur grace a la class Player
     joueur.welcome()
 
     level=1                 #On commence au niveau 1 (osef le tutoriel)

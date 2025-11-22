@@ -1,13 +1,16 @@
+import time
 
 from item import generate_items
 from weapon import  generate_weapon
 from armor import generate_player_armor
 
 def loot_endlvl(level_number,player):
+    time.sleep(2)
     print(f"Récompense de fin du niveau {level_number} :")
+    time.sleep(1)
 
     player.add_potion()                #Gagne une potion a chaque niveau
-
+    time.sleep(1)
     print(f"Choisissez une récompense supplémentaire:")             #Crée 3 options et les affiches ensuites
     choix1_weapon=generate_weapon(level_number)
     choix2_armor=generate_player_armor(level_number)
@@ -22,7 +25,7 @@ def loot_endlvl(level_number,player):
     print(f"   Stats:{choix2_armor.armor_point} ")
 
     print(f"3) Item: {choix3_item.name}")
-    print(f"   Type:{choix3_item.type}")
+    print(f"   Type:{choix3_item.item_type}")
     print(f"   Infos:{choix3_item.description}")
 
     while True:                                     #Boucle de choix
@@ -35,21 +38,21 @@ def loot_endlvl(level_number,player):
             player.set_armor(choix2_armor)
             break
         elif choix_joueur == "3":                       #Utilse les buff instant ou range dans l'inventaire le resre
-            if choix3_item.type=="buff_att":
+            if choix3_item.item_type=="buff_att":
                 player.att += choix3_item.value
                 print(choix3_item.get_stats_effects())
                 break
-            elif choix3_item.type=="buff_HP":
+            elif choix3_item.item_type=="buff_HP":
                 player.hp_max += choix3_item.value
                 print(choix3_item.get_stats_effects())
                 break
-            elif choix3_item.type=="heal":
+            elif choix3_item.item_type=="heal":
                 if choix3_item.name=="potion":
                     player.add_potion()
                 else:
                     player.add_item(choix3_item)
                 break
-            elif choix3_item.type=="offensive":
+            elif choix3_item.item_type=="offensive":
                 player.add_item(choix3_item)
                 break
         else:

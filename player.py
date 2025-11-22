@@ -1,3 +1,7 @@
+import random
+import time
+
+
 class Player:
     def __init__(self,name,hp,att):             #Id card (stats+equip)
         self.name = name
@@ -29,16 +33,32 @@ class Player:
         print("PV restant(s):",self.hp)
 
     def attack_target(self,target):                #self inflige des dégats a target (dégats d'arme si équipée)
-        if self.has_weapon():
-            if target.has_armor():
-                damage=self.att+self.weapon.get_damage_value()-target.armor.get_armor_point()
+        dé_20=random.randint(1,20)
+        bonus_malus_dé=1
+        print(f"Vous lancé le dé à 20 faces... résultats:{dé_20}")
+        time.sleep(2)
+        if dé_20<3:
+            print("Vous avez glissé chef, vous ratez votre coup ")
+            bonus_malus_dé-=1                                       #dégats seront nul
+        elif 3<=dé_20<5:
+            print("Vous éffleurez l'ennemi")
+            bonus_malus_dé-=0.3                                     #dégats diminué de 30%
+        elif dé_20>=18:
+            print("Coup CRITIQUE! (dégats doublés)")                #degats x2
+            bonus_malus_dé+=1
+        else:
+            print("Coup réussi")                                    #dégats normaux
+
+        if self.has_weapon():                                       #Si le joueur a une arme il tappe plus fort
+            if target.has_armor():                                  #Si l'ennemi a armure il faut enlever cela aux dégats
+                damage=int((self.att+self.weapon.get_damage_value())*bonus_malus_dé-target.armor.get_armor_point())
             else:
-                damage=self.att+self.weapon.get_damage_value()
+                damage=int((self.att+self.weapon.get_damage_value())*bonus_malus_dé)
         else:
             if target.has_armor():
-                damage=self.att-target.armor.get_armor_point()
+                damage=int(self.att*bonus_malus_dé-target.armor.get_armor_point())
             else:
-                damage=self.att
+                damage=int(self.att*bonus_malus_dé)
         if damage>0:
             print(self.name, "attaque", target.name, "et lui inflige",damage, "dégat(s)")
             target.take_damage(damage)

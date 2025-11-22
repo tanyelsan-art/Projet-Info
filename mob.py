@@ -1,5 +1,6 @@
 import json
 import random
+import time
 from weapon import Weapon
 from armor import Armor
 
@@ -31,16 +32,31 @@ class Mob:
         print("PV restant(s):",self.hp)
 
     def attack_target(self,target):                #self inflige des dégats a target (dégats d'arme si équipée)
+        dé_20=random.randint(1,20)
+        bonus_malus_dé = 1
+        print(f"{self.name} le dé à 20 faces... résultats:{dé_20}")
+        time.sleep(2)
+        if dé_20 < 3:
+            print("Coup raté ")
+            bonus_malus_dé -= 1  # dégats seront nul
+        elif 3 <= dé_20 < 5:
+            print("Il vous effleure")
+            bonus_malus_dé -= 0.3  # dégats diminué de 30%
+        elif dé_20 >= 18:
+            print("Coup CRITIQUE! (dégats doublés)")  # degats x2
+            bonus_malus_dé += 1
+        else:
+            print("Coup réussi")  # dégats normaux
         if self.has_weapon():
             if target.has_armor():
-                damage=self.weapon.get_damage_value()-target.armor.get_armor_point()
+                damage=int((self.weapon.get_damage_value())*bonus_malus_dé-target.armor.get_armor_point())
             else:
-                damage=self.weapon.get_damage_value()
+                damage=int(self.weapon.get_damage_value()*bonus_malus_dé)
         else:
             if target.has_armor():
-                damage=self.att-target.armor.get_armor_point()
+                damage=int((self.att)*bonus_malus_dé-target.armor.get_armor_point())
             else:
-                damage=self.att
+                damage=int(self.att*bonus_malus_dé)
         if damage>0:
             print(self.name, "attaque", target.name, "et inflige",damage, "dégat(s)")
             target.take_damage(damage)
@@ -59,7 +75,7 @@ def generate_mob(level_number):
         with open("data/mob_dico.json","r",encoding="utf-8") as f:
             mobs_list =json.load(f)
         info_mob=random.choice(mobs_list)                           #Choisi un mob random
-        difficulty_coef=1+(level_number*0.1)
+        difficulty_coef=1+(level_number*0.35)
 
         info_weapon=info_mob["weapon_ref"]                          #Construction de l'arme du mob (objet)
         final_damage=int(info_weapon["base_damage"]*difficulty_coef)
