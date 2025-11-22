@@ -15,7 +15,7 @@ from player import Player
 def loot_endlvl(level_number,player):
     print(f"Récompense de fin du niveau {level_number} :")
 
-    player.add_potions()                #Gagne une potion a chaque niveau
+    player.add_potion()                #Gagne une potion a chaque niveau
 
     print(f"Choisissez une récompense supplémentaire:")             #Crée 3 options et les affiches ensuites
     choix1_weapon=generate_weapon(level_number)
@@ -52,7 +52,13 @@ def loot_endlvl(level_number,player):
                 player.hp_max += choix3_item.value
                 print(choix3_item.get_stats_effects())
                 break
-            elif choix3_item.type=="heal" or choix3_item.type=="offensive":
+            elif choix3_item.type=="heal":
+                if choix3_item.name=="potion":
+                    player.add_potion()
+                else:
+                    player.add_item(choix3_item)
+                break
+            elif choix3_item.type=="offensive":
                 player.add_item(choix3_item)
                 break
         else:
