@@ -12,8 +12,6 @@ class Mob:
         self.att=None
 
     def welcome (self):               #Présente le mob
-        armor_val = self.armor.get_armor_point() if self.armor else 0
-        dmg_val = self.weapon.get_damage_value() if self.weapon else 0
         print(self.name,"est apparu","/ PV:",self.hp,"/ Défense:",self.armor.get_armor_point(),"/ Att:",self.weapon.get_damage_value())
 
     def get_name(self):                 #Retourne le prénom
@@ -44,7 +42,7 @@ class Mob:
             else:
                 damage=self.att
         if damage>0:
-            print(self.name, "attaque", target.name, "et lui inflige",damage, "dégat(s)")
+            print(self.name, "attaque", target.name, "et inflige",damage, "dégat(s)")
             target.take_damage(damage)
         else:
             print(self.name,"attaque",target.name,"mais c'est inéfficace")

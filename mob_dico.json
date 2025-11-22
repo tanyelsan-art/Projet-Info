@@ -10,6 +10,78 @@
     "base_HP": 60,
     "weapon_ref": {"name": "Crachat acide (Hcl)","base_damage": 30},
      "armor_points": 5
+  },
+  {
+    "name": "Zoro",
+    "base_HP": 110,
+    "weapon_ref": {"name": "Wado Ichimonji, Enma, Sandai Kitetsu","base_damage":40},
+    "armor_points": 10
+  },
+  {
+    "name": "Squelette",
+    "base_HP": 50,
+    "weapon_ref": {"name": "Os","base_damage": 15},
+     "armor_points": 5
+  },
+  {
+    "name": "Creeper",
+    "base_HP": 80,
+    "weapon_ref": {"name": "Explosion","base_damage":35},
+    "armor_points": 5
+  },
+  {
+    "name": "Labubu",
+    "base_HP": 75,
+    "weapon_ref": {"name": "Labubu Phonk","base_damage": 30},
+     "armor_points": 10
+  },
+  {
+    "name": "Fantome",
+    "base_HP": 65,
+    "weapon_ref": {"name": "Labubu Phonk","base_damage": 30},
+    "armor_points": 5
+  },
+  {
+    "name": "Zombie",
+    "base_HP": 70,
+    "weapon_ref": {"name": "Morsure","base_damage": 20},
+     "armor_points": 10
+  },
+  {
+    "name": "Groupe de bandits",
+    "base_HP": 110,
+    "weapon_ref": {"name": "Dagues","base_damage":10},
+    "armor_points": 8
+  },
+  {
+    "name": "Samourai",
+    "base_HP": 100,
+    "weapon_ref": {"name": "Katana","base_damage": 35},
+     "armor_points": 10
+  },
+  {
+    "name": "Mage Noir",
+    "base_HP": 110,
+    "weapon_ref": {"name": "Sceptre Obscure","base_damage": 67},
+    "armor_points": 13
+  },
+  {
+    "name": "Assassin",
+    "base_HP": 75,
+    "weapon_ref": {"name": "Couteau","base_damage": 25},
+     "armor_points": 7
+  },
+  {
+    "name": "Mathematicien",
+    "base_HP": 20,
+    "weapon_ref": {"name": "Division par 0","base_damage":999},
+    "armor_points": 1
+  },
+  {
+    "name": "Cell",
+    "base_HP": 100,
+    "weapon_ref": {"name": "Perfection","base_damage": 40},
+     "armor_points": 15
   }
 
 

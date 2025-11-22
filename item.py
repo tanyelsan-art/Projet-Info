@@ -1,7 +1,5 @@
 import json
 import random
-from armor import Armor
-from weapon import Weapon
 class Item:
     def __init__(self,name,description,type,value):
         self.name = name

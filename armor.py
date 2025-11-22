@@ -3,7 +3,6 @@ import json
 
 base_armor_stats =5
 
-
 class Armor:
     def __init__(self,name,description,armor_point):
         self.name = name

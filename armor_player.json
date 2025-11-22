@@ -26,5 +26,7 @@
   {
     "name": "Armure en Nanites",
     "description": "Possédé par les Empires depuis des siècles"
-  }
+  },
+  {"name": "Points bonus du MOOC",
+  "description": "2 points sur l'examen ca paye pas de mine "}
 ]

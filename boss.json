@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Mathematicien",
+    "base_HP": 30,
+    "weapon_ref": {"name": "Division par 0","base_damage":999},
+    "armor_points": 1
+  },
+  {
+    "name": "Cell",
+    "base_HP": 150,
+    "weapon_ref": {"name": "Perfection","base_damage": 40},
+     "armor_points": 15
+  },
+  {
+    "name": "Kaido",
+    "base_HP": 150,
+    "weapon_ref": {"name": "boule de feu","base_damage": 30},
+    "armor_points": 25
+  }
+
+]
