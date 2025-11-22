@@ -67,10 +67,13 @@ class Player:
             heal_val=min(HP_manquant,potion_heal_val)
             self.hp+=heal_val
             self.potions-=1
-            print(f"{self.name} boit une potion et récupère {heal_val} PV! (Reste{self.potions} potion")
+            print(f"{self.name} boit une potion et récupère {heal_val} PV! (Reste{self.potions} potion(s)")
         else:
             print("Vous n'avez plus de potion")
 
-    def add_potions(self,item):
+    def add_potions(self):
+        self.potions+=1
+        print(f"vous gagnez une potion ({self.potions} potion(s) restante(s)")
+    def add_item(self,item):
         self.inventory.append(item)
         print(f"Vous rangez {item.name} dans votre inventaire")

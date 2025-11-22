@@ -9,7 +9,7 @@ class Item:
         self.type = type            #heal ou buff hp ou buff att ou offensive
         self.value = value
 
-    def get_stats_effects(self):
+    def get_stats_effects(self):                #Affiche l'effet souhaité (ne fait rien d'autres)
         if self.type == "heal":
             return f"Soigne {self.value} PV"
         elif self.type == "buff_att":

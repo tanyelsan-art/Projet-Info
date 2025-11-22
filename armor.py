@@ -5,9 +5,10 @@ base_armor_stats =5
 
 
 class Armor:
-    def __init__(self,name,armor_point):
+    def __init__(self,name,description,armor_point):
         self.name = name
         self.armor_point = armor_point
+        self.description = description
     def get_armor_point(self):
         return self.armor_point
     def get_name(self):
@@ -23,6 +24,7 @@ def generate_player_armor(level_number):
 
         new_armor=Armor(
             name=info_armor["name"],
+            description=info_armor["description"],
             armor_point=final_armor_points)
         return new_armor
 
