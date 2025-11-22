@@ -60,7 +60,7 @@ class Player:
         self.armor=armor
 
     def use_potion(self):
-        potion_heal_val=30
+        potion_heal_val=int(self.hp_max*0.30)
 
         if self.potions>0:
             HP_manquant=self.hp_max-self.hp

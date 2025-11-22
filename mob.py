@@ -74,7 +74,8 @@ def generate_mob(level_number):
 
         mob_armor=Armor(
             name="Armure du monstre",
-            armor_point=armor_val)
+            armor_point=armor_val,
+            description="Armure du monstre")
 
         final_HP=int(info_mob["base_HP"]*difficulty_coef)
         new_mob=Mob(

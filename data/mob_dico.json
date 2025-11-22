@@ -74,7 +74,7 @@
   {
     "name": "Mathematicien",
     "base_HP": 20,
-    "weapon_ref": {"name": "Division par 0","base_damage":999},
+    "weapon_ref": {"name": "Division par 0","base_damage":99},
     "armor_points": 1
   },
   {

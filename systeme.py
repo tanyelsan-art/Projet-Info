@@ -1,16 +1,7 @@
-import random
-import json
-from gc import get_stats
 
-from item import Item
 from item import generate_items
-from weapon import Weapon
 from weapon import  generate_weapon
-from armor import Armor
 from armor import generate_player_armor
-from mob import Mob
-from mob import generate_mob
-from player import Player
 
 def loot_endlvl(level_number,player):
     print(f"Récompense de fin du niveau {level_number} :")
@@ -20,7 +11,7 @@ def loot_endlvl(level_number,player):
     print(f"Choisissez une récompense supplémentaire:")             #Crée 3 options et les affiches ensuites
     choix1_weapon=generate_weapon(level_number)
     choix2_armor=generate_player_armor(level_number)
-    choix3_item = generate_items(level_number)
+    choix3_item = generate_items()
 
     print(f"1) Arme: {choix1_weapon.name}")
     print(f"   Infos:{choix1_weapon.description}")

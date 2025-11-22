@@ -1,12 +1,10 @@
 import random               #Diff fction a import
-import json
+
 import time
 
 from systeme import loot_endlvl         #import tt les classes et fonctions nécéssaires
 from player import Player
-from item import Item
-from item import generate_items
-from mob import Mob
+
 from mob import generate_mob
 def game_launcher():
     print("Bienvenue dans le Xenoverse jeune aventurier")
@@ -23,13 +21,13 @@ def set_seed():
         print("Seed aléatoire activée")
 
 def combat(player,mob):
-    print("Un monstre sauvage apparaît!!!(pas le budget pour la musique")
+    print("Un monstre sauvage apparaît!!!(pas le budget pour la musique)")
     mob.welcome()
 
     while player.hp>0 and mob.hp>0:
-        print(f"{player.name} ({player.hp}/{player.hp_max}PV) VS {mob.name} ({mob.hp})PV")
+        print(f"{player.name} ({player.hp}/{player.hp_max}PV) VS {mob.name} ({mob.hp}PV)")
         print("1) Attaquer")
-        print(f"2) Boire potion ({player.potions} restante")
+        print(f"2) Boire potion ({player.potions} restante(s) )")
         print(f"3) Inventaire")
 
         choix_action=input("Choisissez l'action(1,2 ou 3)-> ")
@@ -91,13 +89,14 @@ def main():                                     #Lance le jeu
     while True:             #Boucle infini
         print(f"================================= Salle n°{level}==================================")
         input("Appuyez sur ENTER")
-        monstre=generate_mob()
+        monstre=generate_mob(level)
         combat_remporte=combat(joueur,monstre)
 
         if not combat_remporte:
             print(f"===GAME OVER===")
             print(f"Score= Lvl{level}")
             break                           #Fin du prgrm
+
 
         else:
             loot_endlvl(level,joueur)
