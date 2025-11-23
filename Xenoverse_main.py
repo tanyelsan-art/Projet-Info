@@ -3,18 +3,21 @@ import json
 import time
 
 class Colors:
+    """Class permettant de modifier la couleur du texte affiché dans la console
+    (Reset permet de remettre la couleur originale)"""
     HEADER = '\033[95m'
     BLUE = '\033[94m'
     CYAN = '\033[96m'
     GREEN = '\033[92m'
     YELLOW = '\033[93m'
     RED = '\033[91m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    RESET = '\033[0m'                       # Arrete la couleur
+    RESET = '\033[0m'
 
-class Player:                                   # Class du joueur
-    def __init__(self, name, hp, att):             # Id card (stats+equip)
+class Player:
+    """Class qui contient toutes les fonctions relatives au joueur"""
+    def __init__(self, name, hp, att):
+        """Carte d'identité du joueur (stats+items)
+        l'inventaire est une liste vide qui va se remplir avec des objets récupérés en fin de niveau"""
         self.name = name
         self.hp = hp
         self.hp_max = hp                          # Pour ne pas soigner au dessus des pv max
@@ -25,25 +28,38 @@ class Player:                                   # Class du joueur
         self.potions = 3                          # Commence avec 3 popo
         self.inventory = []
 
-    def welcome(self):               # Présente le joueur
+    def welcome(self):
+        """Présente le joueur et affiche les stats principales"""
         print("Bienvenue", Colors.BLUE, self.name, Colors.GREEN, "/ PV:", self.hp, Colors.RESET, Colors.RED, "/ Att:", self.att, Colors.RESET)
 
-    def get_name(self):                 # Retourne le prénom
+    def get_name(self):
+        """Renvoie le nom du joueur"""
         return self.name
 
     def get_hp(self):
+        """Renvoie les hp du joueur"""
         return self.hp
 
     def get_att(self):
+        """Renvoie l'att du joueur"""
         return self.att
     def get_armor(self):
+        """"Renvoie l'armure du joueur"""
         return self.armor
 
-    def take_damage(self, damage):             # self prend des dégats
+    def take_damage(self, damage):
+        """Self prend 'damage' dégats (calculés dans la fonction d'après)"""
         self.hp -= damage
         print("PV restant(s):", self.hp)
 
-    def attack_target(self, target):                # self inflige des dégats a target (dégats d'arme si équipée)
+    def attack_target(self, target):
+        """Commence par choisir 'aléatoirement' une valeur entre 1 et 20
+        selon le résultat -> donne un coef de 'réussite' de l'att
+
+        Ensuite regarde si le joueur possède une arme (et ajoute les dégats d'arme au dégats infligés si c'est le cas)
+        Dans les 2 cas, regarde si l'ennemi possède une armure et réduit les dégats infligés si c'est le cas
+        Si les dégats sont positifs, inflige les dégats à l'adversaire (nécessaire pour éviter de soigner l'ennemi)
+          sinon attaque inéfficace"""
         input("Appuyez sur enter pour lancer le dé")
         dé_20 = random.randint(1, 20)
         bonus_malus_dé = 1
@@ -54,15 +70,15 @@ class Player:                                   # Class du joueur
             bonus_malus_dé -= 1                                       # dégats seront nul
         elif 3 <= dé_20 < 5:
             print("Vous effleurez l'ennemi")
-            bonus_malus_dé -= 0.3                                     # dégats diminué de 30%
+            bonus_malus_dé -= 0.3                                     # dégats diminués de 30%
         elif dé_20 >= 18:
-            print(f"{Colors.RED}Coup CRITIQUE!{Colors.RESET} (dégâts doublés)")                # degats x2
+            print(f"{Colors.RED}Coup CRITIQUE!{Colors.RESET} (dégâts doublés)")                # dégats x2
             bonus_malus_dé += 1
         else:
             print("Coup réussi")                                    # dégats normaux
 
-        if self.has_weapon():                                       # Si le joueur a une arme il tappe plus fort
-            if target.has_armor():                                  # Si l'ennemi a armure il faut enlever cela aux dégats
+        if self.has_weapon():
+            if target.has_armor():
                 damage = int((self.att + self.weapon.get_damage_value()) * bonus_malus_dé - target.armor.get_armor_point())
             else:
                 damage = int((self.att + self.weapon.get_damage_value()) * bonus_malus_dé)
@@ -82,21 +98,29 @@ class Player:                                   # Class du joueur
         else:
             print(self.name, "attaque", target.name, "mais c'est inefficace")
 
-    def has_weapon(self):                           # verifie si self posséde une arme
+    def has_weapon(self):
+        """Vérifie si le joueur a une arme"""
         return self.weapon is not None
 
-    def set_weapon(self, weapon):                    # Remplace l'arme de self par une nouvelle
+    def set_weapon(self, weapon):
+        """ Remplace l'arme du joueur par une nouvelle, si pas d'arme l'équipe"""
         print(self.name, "a équipé", '"', weapon.name, '"', "(Dégâts supp:", weapon.get_damage_value(), ")")
         self.weapon = weapon
 
     def has_armor(self):
+        """Vérifie si le joueur a une armure """
         return self.armor is not None
 
     def set_armor(self, armor):
+        """Donne l'armure au joueur ou remplace l'ancienne"""
         print(self.name, "a équipé", '"', armor.name, '"', "(Points d'armure:", armor.get_armor_point(), ")")
         self.armor = armor
 
     def use_potion(self):
+        """ Utilise une potion de soin
+         1) vérifie si le joueur a une potion
+         2) calcul les hp manquants pour éviter de soigner au dessus des PV max
+         3) soigne le joueur et lui enlève une potion"""
         potion_heal_val = int(self.hp_max * 0.40)
 
         if self.potions > 0:
@@ -109,14 +133,19 @@ class Player:                                   # Class du joueur
             print("Vous n'avez plus de potion")
 
     def add_potion(self):
+        """Ajoute une potion au joueur """
         self.potions += 1
         print(f"{Colors.GREEN}vous gagnez une potion ({self.potions} potion(s) restante(s)){Colors.RESET}")
     def add_item(self, item):
+        """Ajoute un item dans l'inventaire (pourra être utilisé plus tard) """
         self.inventory.append(item)
         print(f"Vous rangez {item.name} dans votre inventaire")
 
 
     def affiche_inventaire(self):
+        """Affiche l'inventaire
+        1)Vérifie si l'inventaire est vide ("return False si vide)
+        2)Si pas boucle chaque item de l'inventaire et l'affiche accompagné de son indice et return True"""
         print("INVENTAIRE:")
         if not self.inventory:
             print(f"{Colors.RED}Votre sac est vide.{Colors.RESET}")
@@ -126,12 +155,17 @@ class Player:                                   # Class du joueur
                 print(f"{i}) {item.name} ({item.description})")
             return True                         # Il y a des objets utilisable
 
-    def use_item(self, index, target_mob):            # target mob needed pour les objets type:offensive
-        if index >= 0 and index < len(self.inventory):              # Verfifie que l'index de l'item souhaité existe
+    def use_item(self, index, target_mob):
+        """ Va permettre d'utiliser un item (variable target_mob nécéssaire pour les items offensifs)
+        1) Vérifie si l'item associé à l'index éxiste (si pas, return False et le joueur peut quand même jouer sans crash)
+        2) Pop supprime l'item et le renvoie
+        3) Vérifie le type de l'item et applique l'effet souhaité et return True (donc le joueur a bel et bien utilisé un item)
+        """
+        if index >= 0 and index < len(self.inventory):
             item_used = self.inventory.pop(index)         # Pop supp l'item et le renvoi
             print(f"Vous utilisez: {item_used.name} ")
 
-            if item_used.item_type == "heal":                    # Verfie le type de l'item
+            if item_used.item_type == "heal":
                 HP_manquant = self.hp_max - self.hp
                 heal_val = min(HP_manquant, item_used.value)           # Afin de pas regen + que pv max
                 self.hp += heal_val
@@ -147,13 +181,16 @@ class Player:                                   # Class du joueur
 
 
 class Item:
+    """Class d'un item"""
     def __init__(self, name, description, item_type, value):
+        """Définit l'item et ses stats"""
         self.name = name
         self.description = description
         self.item_type = item_type            # heal ou buff hp ou buff att ou offensive
         self.value = value
 
-    def get_stats_effects(self):                # Affiche l'effet souhaité (ne fait rien d'autres)
+    def get_stats_effects(self):
+        """Affiche l'effet souhaité (ne fait rien d'autre)"""
         if self.item_type == "heal":
             return f"Soigne {self.value} PV"
         elif self.item_type == "buff_att":
@@ -163,10 +200,13 @@ class Item:
         elif self.item_type == "offensive":
             return f"{self.name} inflige {self.value} dégâts"
         else:
-            return None
+            return None             #Sécurité supplémentaire
 
 
 def generate_items(level_number=1): # Ajout de level_number pour compatibilité
+    """Crée un item
+    1) Ouvre le Json, crée une liste et y ajoute tous les items possibles
+    2) En choisi un aléatoirement"""
         with open('data/items.json', "r", encoding="utf-8") as item_file:
             items_list = json.load(item_file)
         info_item = random.choice(items_list)                 # Choisi un item random pour la fin de niveau
@@ -518,3 +558,4 @@ def main():                                     # Lance le jeu
 
 if __name__ == "__main__":                      # Lance le jeu uniquement si RUN
     main()
+
