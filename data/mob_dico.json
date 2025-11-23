@@ -134,7 +134,7 @@
   },
   {
     "name": "Mage Noir",
-    "base_HP": 110,
+    "base_HP": 60,
     "weapon_ref": {"name": "Sceptre Obscure","base_damage": 67},
     "armor_points": 13
   },

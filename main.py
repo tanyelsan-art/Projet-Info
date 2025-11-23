@@ -90,6 +90,7 @@ def combat(player,mob):
 
         else:
             print("Commande incorrecte")                        #joueur a choisis aucune des 3 options
+            print("============================================")
 
         if mob.hp<=0:                                            #Si le mob est mort ca s'arrete la et il n'attaque pas en retour
             print(f"Vous avez vaincu {mob.name} !")
