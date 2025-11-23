@@ -157,7 +157,7 @@
   },
   {
     "name": "Cell",
-    "base_HP": 100,
+    "base_HP": 120,
     "weapon_ref": {"name": "Perfection","base_damage": 40},
      "armor_points": 15
   }

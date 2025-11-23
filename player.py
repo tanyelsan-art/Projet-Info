@@ -32,6 +32,7 @@ class Player:
         print("PV restant(s):",self.hp)
 
     def attack_target(self,target):                #self inflige des dégats a target (dégats d'arme si équipée)
+        input("Appuyez sur enter pour lancer le dé")
         dé_20=random.randint(1,20)
         bonus_malus_dé=1
         print(f"Vous lancé le dé à 20 faces... résultats:{dé_20}")
@@ -60,7 +61,7 @@ class Player:
                 damage=int(self.att*bonus_malus_dé)
         if damage>0:
             if self.has_weapon():
-                print(f"{self.name} attaque {target.name} avec {self.weapon.name}et lui inflige {damage} dégat(s)")
+                print(f"{self.name} attaque {target.name} avec {self.weapon.name} et lui inflige {damage} dégat(s)")
                 target.take_damage(damage)
             else:
                 print(f"{self.name} attaque {target.name} et lui inflige {damage} dégat(s)")

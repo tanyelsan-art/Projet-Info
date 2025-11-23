@@ -9,18 +9,21 @@ from mob import generate_mob
 def game_launcher():
     print("Bienvenue dans le Xenoverse jeune aventurier")
     time.sleep(1)
-    print("Ici, nul ne sait sur quoi tu vas tomber…(si ce n'est des entitées dont on ne posséde pas les droits d'auteur:))")
+    print("Ici, nul ne sait sur quoi tu vas tomber…(si ce n'est des entités dont on ne possède pas les droits d'auteur:))")
     time.sleep(1)
     print("Alors prépare toi au pire comme au meilleur. Bon courage!, tu vas en avoir besoin.")
     time.sleep(1)
-    print("Inutile de vous éxpliquez le fonctionnement, vous êtes si intelligent (et c'est intuitif)!")
+    print("Vous affronterez des créatures en tout genre, en les attaquants tour par tour.")
     time.sleep(1)
-    print("Equipe une arme ou un bouclier vous donne un bonus d'att/def (en équipez un second remplace le précédant)")
-    print("Une dernière chose, avant d'attaquer vous lancerez un dé a 20 face.")
+    print("Après chaque affrontement, vous pourrez choisir entre 3 objets (une arme/une armure/un objet")
+    time.sleep(1)
+    print("Si vous équipez une arme, ca rajoute des dégâts supplémentaires et mettre une armure vous rend plus résistant. )")
+    print("En équiper une 2e remplace la précédente")
+    print("Une dernière chose, avant d'attaquer vous lancerez un dé à 20 faces.")
     time.sleep(0.5)
-    print("Et selon le résultat vous toucherez +/- votre adversaire alors j'espère que c'est votre jour de chance :)")
+    print("Et selon le résultat, vous toucherez +/- votre adversaire; alors j'espère que c'est votre jour de chance :)")
 def set_seed():
-    print("Voulez vous jouez avec une seed ? (laissez vide pour aléatoire)")
+    print("Voulez-vous jouez avec une seed ? (laissez vide pour aléatoire)")
     seed_input=input("Seed->")
 
     if seed_input!="":
