@@ -1,9 +1,4 @@
-import json
-import random
-import time
-from weapon import Weapon
-from armor import Armor
-from couleurs import Colors
+
 
 class Mob:
     def __init__(self,name,hp,weapon,armor):             #Id card

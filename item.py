@@ -1,5 +1,4 @@
-import json
-import random
+
 class Item:
     def __init__(self,name,description,item_type,value):
         self.name = name

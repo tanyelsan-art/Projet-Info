@@ -1,8 +1,5 @@
-import json
-import random
 
 base_damage_weapon=10
-
 
 class Weapon:
     def __init__(self, name, damage, description):

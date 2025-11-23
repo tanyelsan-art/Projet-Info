@@ -1,5 +1,4 @@
-import random
-import json
+
 
 base_armor_stats =10
 

@@ -1,6 +1,3 @@
-import random
-import time
-from couleurs import Colors
 class Player:
     def __init__(self,name,hp,att):             #Id card (stats+equip)
         self.name = name

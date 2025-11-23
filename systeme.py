@@ -1,9 +1,4 @@
-import time
 
-from item import generate_items
-from couleurs import Colors
-from weapon import  generate_weapon
-from armor import generate_player_armor
 
 def loot_endlvl(level_number,player):
     print("=======================================")
