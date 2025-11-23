@@ -1,11 +1,16 @@
 import random               #Diff fction a import
 
 import time
-
+from couleurs import Colors
 from systeme import loot_endlvl         #import tt les classes et fonctions nécéssaires
 from player import Player
 
 from mob import generate_mob
+
+
+
+
+
 def game_launcher():
     print("Bienvenue dans le Xenoverse jeune aventurier")
     time.sleep(1)
@@ -40,11 +45,11 @@ def combat(player,mob):
     mob.welcome()
 
     while player.hp>0 and mob.hp>0:
-        print(f"{player.name} {player.hp}/{player.hp_max}PV ({player.att} dégats de base)   VS   {mob.name} ({mob.hp}PV)")
+        print(f"{player.name} {Colors.GREEN}{player.hp}/{player.hp_max}PV {Colors.RESET}({player.att} dégats de base)  {Colors.RED} VS {Colors.RESET}  {mob.name} {Colors.GREEN}({mob.hp}PV){Colors.RESET}")
         time.sleep(1)
-        print("1) Attaquer")
-        print(f"2) Boire potion ({player.potions} restante(s) )")
-        print(f"3) Inventaire")
+        print(Colors.RED+"1)","Attaquer",Colors.RESET)
+        print(f"{Colors.GREEN}2) Boire potion ({player.potions} restante(s) ){Colors.RESET}")
+        print(f"{Colors.YELLOW}3) Inventaire{Colors.RESET}" )
 
         choix_action=input("Choisissez l'action(1,2 ou 3)-> ")
         action_effectue=False                   #Nous dit si le joueur a deja joue son tour

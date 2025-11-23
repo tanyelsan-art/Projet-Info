@@ -3,6 +3,7 @@ import random
 import time
 from weapon import Weapon
 from armor import Armor
+from couleurs import Colors
 
 class Mob:
     def __init__(self,name,hp,weapon,armor):             #Id card
@@ -13,7 +14,7 @@ class Mob:
         self.att=None
 
     def welcome (self):               #Présente le mob
-        print(self.name,"est apparu","/ PV:",self.hp,"/ Défense:",self.armor.get_armor_point(),"/ Att:",self.weapon.get_damage_value())
+        print(self.name,"est apparu",Colors.GREEN,"/ PV:",self.hp,Colors.CYAN,"/ Défense:",self.armor.get_armor_point(),Colors.RED,"/ Att:",self.weapon.get_damage_value(),Colors.RESET)
 
     def get_name(self):                 #Retourne le prénom
         return self.name

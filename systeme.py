@@ -1,13 +1,14 @@
 import time
 
 from item import generate_items
+from couleurs import Colors
 from weapon import  generate_weapon
 from armor import generate_player_armor
 
 def loot_endlvl(level_number,player):
     print("=======================================")
     time.sleep(2)
-    print(f"Récompense de fin du niveau {level_number} :")
+    print(f"{Colors.YELLOW}Récompense de fin du niveau {level_number} :{Colors.RESET}")
     time.sleep(1)
 
     player.add_potion()                #Gagne une potion a chaque niveau

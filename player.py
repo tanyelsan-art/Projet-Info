@@ -1,6 +1,6 @@
 import random
 import time
-
+from couleurs import Colors
 class Player:
     def __init__(self,name,hp,att):             #Id card (stats+equip)
         self.name = name
@@ -14,7 +14,7 @@ class Player:
         self.inventory=[]
 
     def welcome (self):               #Présente le joeur
-        print("Bienvenue",self.name,"/ PV:",self.hp,"/ Att:",self.att)
+        print("Bienvenue",Colors.BLUE,self.name,Colors.GREEN,"/ PV:",self.hp,Colors.RESET,Colors.RED,"/ Att:",self.att,Colors.RESET)
 
     def get_name(self):                 #Retourne le prénom
         return self.name
@@ -44,7 +44,7 @@ class Player:
             print("Vous éffleurez l'ennemi")
             bonus_malus_dé-=0.3                                     #dégats diminué de 30%
         elif dé_20>=18:
-            print("Coup CRITIQUE! (dégats doublés)")                #degats x2
+            print(f"{Colors.RED}Coup CRITIQUE!{Colors.RESET} (dégats doublés)")                #degats x2
             bonus_malus_dé+=1
         else:
             print("Coup réussi")                                    #dégats normaux
@@ -92,13 +92,13 @@ class Player:
             heal_val=min(HP_manquant,potion_heal_val)               #Afin de pas regen + que pv max
             self.hp+=heal_val
             self.potions-=1
-            print(f"{self.name} boit une potion et récupère {heal_val} PV! (Reste{self.potions} potion(s))")
+            print(f"{Colors.GREEN}{self.name} boit une potion et récupère {heal_val} PV! (Reste{self.potions} potion(s)){Colors.RESET}")
         else:
             print("Vous n'avez plus de potion")
 
     def add_potion(self):
         self.potions+=1
-        print(f"vous gagnez une potion ({self.potions} potion(s) restante(s))")
+        print(f"{Colors.GREEN}vous gagnez une potion ({self.potions} potion(s) restante(s)){Colors.RESET}")
     def add_item(self,item):
         self.inventory.append(item)
         print(f"Vous rangez {item.name} dans votre inventaire")
@@ -107,7 +107,7 @@ class Player:
     def affiche_inventaire(self):
         print("INVENTAIRE:")
         if not self.inventory:
-            print("Votre sac est vide.")
+            print(f"{Colors.RED}Votre sac est vide.{Colors.RESET}")
             return False                            #Rien a utiliser (évite le crash)
         else:
             for i, item in enumerate(self.inventory):             #Boucle chaque item avec leurs indices respectif (cf enumerate)
