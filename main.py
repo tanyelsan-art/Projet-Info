@@ -23,14 +23,16 @@ def game_launcher():
     time.sleep(0.5)
     print("Et selon le résultat, vous toucherez +/- votre adversaire; alors j'espère que c'est votre jour de chance :)")
 def set_seed():
-    print("Voulez-vous jouez avec une seed ? (laissez vide pour aléatoire)")
+    print("Voulez-vous jouez avec une seed ? (évitez la 67... laissez vide pour aléatoire)")
     seed_input=input("Seed->")
 
     if seed_input!="":
         random.seed(seed_input)
         print(f"Seed utilisée: {seed_input}")
+        return seed_input
     else:
         print("Seed aléatoire activée")
+        return "seed random"
 
 def combat(player,mob):
     print("Un monstre sauvage apparaît!!!(pas le budget pour la musique)")
@@ -95,13 +97,13 @@ def combat(player,mob):
 
 def main():                                     #Lance le jeu
     game_launcher()
-    set_seed()
+    seed_game=set_seed()
     print("Quel est ton nom, jeune padawan?")
     name=input("->")
-    joueur=Player(name,120,50)              #defini le joueur grace a la class Player
+    joueur=Player(name,120,40)              #defini le joueur grace a la class Player
     joueur.welcome()
 
-    level=1                 #On commence au niveau 1 (osef le tutoriel)
+    level=0                 #On commence au niveau 0 (tuto pour pas se faire one shot au début)
 
     while True:             #Boucle infini
         print(f"================================= Salle n°{level}==================================")
@@ -112,6 +114,7 @@ def main():                                     #Lance le jeu
         if not combat_remporte:
             print(f"===GAME OVER===")
             print(f"Score= Lvl{level}")
+            print(f"Seed utilisée: {seed_game}")
             break                           #Fin du prgrm
 
 

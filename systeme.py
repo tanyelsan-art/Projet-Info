@@ -13,6 +13,7 @@ def loot_endlvl(level_number,player):
     player.add_potion()                #Gagne une potion a chaque niveau
     time.sleep(1)
     print(f"Choisissez une récompense supplémentaire:")             #Crée 3 options et les affiches ensuites
+    time.sleep(1)
     choix1_weapon=generate_weapon(level_number)
     choix2_armor=generate_player_armor(level_number)
     choix3_item = generate_items()
