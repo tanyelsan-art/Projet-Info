@@ -203,15 +203,16 @@ class Item:
             return None             #Sécurité supplémentaire
 
 
-def generate_items(level_number=1): # Ajout de level_number pour compatibilité
+def generate_items(level_number=1):
     """Crée un item
     1) Ouvre le Json, crée une liste et y ajoute tous les items possibles
-    2) En choisi un aléatoirement"""
-        with open('data/items.json', "r", encoding="utf-8") as item_file:
-            items_list = json.load(item_file)
-        info_item = random.choice(items_list)                 # Choisi un item random pour la fin de niveau
+    2) En choisi un aléatoirement
+    3) Utilise la class pour transformer l'item (dico) en item fonctionnel"""
+    with open('data/items.json', "r", encoding="utf-8") as item_file:
+        items_list = json.load(item_file)
+        info_item = random.choice(items_list)
 
-        new_item = Item(                                      # Crée l'objet en question
+        new_item = Item(
             info_item["name"],
             info_item["description"],
             info_item["type"],
@@ -220,17 +221,21 @@ def generate_items(level_number=1): # Ajout de level_number pour compatibilité
 
 
 class Mob:
-    def __init__(self, name, hp, weapon, armor):             # Id card
+    """Class d'un mob"""
+    def __init__(self, name, hp, weapon, armor):
+        """ Définit le mob (il possède d'office une arme et pas besoin d'att car dégats = dégats d'armes"""
         self.name = name
         self.hp = hp
         self.armor = armor
-        self.weapon = weapon          # Un ennemi en a d'office une donc dégat d'arme=att
+        self.weapon = weapon
         self.att = None
 
     def welcome(self):               # Présente le mob
+        """Présente l'ennemi à chaque début de level"""
         print(self.name, "est apparu", Colors.GREEN, "/ PV:", self.hp, Colors.CYAN, "/ Défense:", self.armor.get_armor_point(), Colors.RED, "/ Att:", self.weapon.get_damage_value(), Colors.RESET)
 
-    def get_name(self):                 # Retourne le prénom
+    def get_name(self):
+        """Retourne le nom du mob"""
         return self.name
 
     def get_hp(self):
@@ -242,11 +247,13 @@ class Mob:
     def get_weapon(self):
         return self.weapon
 
-    def take_damage(self, damage):             # self prend des dégats
+    def take_damage(self, damage):
+        """self prend des dégats (même fonctionnement que pour Player)"""
         self.hp -= damage
         print("PV restant(s):", self.hp)
 
-    def attack_target(self, target):                # self inflige des dégats a target (dégats d'arme si équipée)
+    def attack_target(self, target):
+        """ Même fonctionnement que la fonction éponyme de la class Player"""
         dé_20 = random.randint(1, 20)
         bonus_malus_dé = 1
         print(f"{self.name} lance le dé à 20 faces... résultats: {dé_20}")
@@ -262,7 +269,7 @@ class Mob:
             bonus_malus_dé += 1
         else:
             print("Coup réussi")  # dégats normaux
-        if self.has_weapon():
+        if self.has_weapon():                           #Pas nécéssaire mais sécu supplémentaire
             if target.has_armor():
                 damage = int((self.weapon.get_damage_value()) * bonus_malus_dé - target.armor.get_armor_point())
             else:
@@ -282,44 +289,50 @@ class Mob:
         return self.weapon is not None
 
     def has_armor(self):
+        """Vérifie si Mob possède une armure (utile pour Player.attack_target(target=Mob)"""
         return self.armor is not None
 
 
 def generate_mob(level_number):
-        with open("data/mob_dico.json", "r", encoding="utf-8") as f:
+    """Crée un mob
+    1) Ouvre le Json et place tous les Mob dans une liste
+    2) Choisit aléatoirement un Mob, son arme et armure
+    3) Les définis grâce aux class Weapon, Armor et Mob (stats augmentées selon le level grâce au coefficient de difficulté et convertie en entier)"""
+    with open("data/mob_dico.json", "r", encoding="utf-8") as f:
             mobs_list = json.load(f)
-        info_mob = random.choice(mobs_list)                           # Choisi un mob random
-        difficulty_coef = 1 + (level_number * 0.30)
+    info_mob = random.choice(mobs_list)                           # Choisi un mob random
+    difficulty_coef = 1 + (level_number * 0.30)
 
-        info_weapon = info_mob["weapon_ref"]                          # Construction de l'arme du mob (objet)
-        final_damage = int(info_weapon["base_damage"] * difficulty_coef)
+    info_weapon = info_mob["weapon_ref"]                          # Construction de l'arme du mob (objet)
+    final_damage = int(info_weapon["base_damage"] * difficulty_coef)
 
-        mob_weapon = Weapon(
+    mob_weapon = Weapon(
             name=info_weapon["name"],
             damage=final_damage,
             description="Arme du monstre")
 
-        armor_val = info_mob["armor_points"]                          # Construction de l'armure (objet)
-        armor_val = int(armor_val * difficulty_coef)
+    armor_val = info_mob["armor_points"]                          # Construction de l'armure (objet)
+    armor_val = int(armor_val * difficulty_coef)
 
-        mob_armor = Armor(
+    mob_armor = Armor(
             name="Armure du monstre",
             armor_point=armor_val,
             description="Armure du monstre")
 
-        final_HP = int(info_mob["base_HP"] * difficulty_coef)
-        new_mob = Mob(
+    final_HP = int(info_mob["base_HP"] * difficulty_coef)
+    new_mob = Mob(
             name=info_mob["name"],
             hp=final_HP,
-            weapon=mob_weapon,                      # Objet crée juste au dessus
+            weapon=mob_weapon,                      # Objets crées juste au-dessus
             armor=mob_armor)
-        return new_mob
+    return new_mob
 
-
-base_damage_weapon = 10
+base_damage_weapon = 10                 #Stat de base des armes
 
 class Weapon:
+    """ Class des armes (utilisée dans generate_mob() et en fin de niveau dans generate_weapon()"""
     def __init__(self, name, damage, description):
+        """Définit une arme """
         self.name = name
         self.damage = damage
         self.description = description
@@ -333,10 +346,14 @@ class Weapon:
 
 
 def generate_weapon(level_number):
-    with open("data/weapon_dico.json", "r", encoding="utf-8") as f:       # Charge le fichier Json
+    """Crée une arme (en fin de niveau)
+    1) Ouvre le Json et place toutes les armes et leurs descriptions respectives dans une liste
+    2) En choisit une aléatoirement
+    3) La définit grâce à la class Weapon (stats augmentées grâce au coefficient de progression et convertie en entier)"""
+    with open("data/weapon_dico.json", "r", encoding="utf-8") as f:
         list_weapons_json = json.load(f)
 
-    info_weapons = random.choice(list_weapons_json)             # Choisi une arme random
+    info_weapons = random.choice(list_weapons_json)
     coef_damage_weapon = 1 + (level_number * 0.25)
     final_damage = int(base_damage_weapon * coef_damage_weapon)     # Calcul les degats d'armes
 
@@ -347,10 +364,12 @@ def generate_weapon(level_number):
     return new_weapon
 
 
-base_armor_stats = 10
+base_armor_stats = 10           #stats de base des armures
 
 class Armor:
+    """Class des armures"""
     def __init__(self, name, description, armor_point):
+        """Définit une armure"""
         self.name = name
         self.armor_point = armor_point
         self.description = description
@@ -360,6 +379,11 @@ class Armor:
         return self.name
 
 def generate_player_armor(level_number):
+    """Crée une armure (en fin de niveau)
+    1) Ouvre le fichier Json et place toutes les armures et leurs descriptions respectives dans une liste
+    2) Choisit aléatoirement une armure dans la liste
+    3) La définit via la class Armor et ajuste les stats en fonction du level grâce au coefficient de progression et convertie en entier"""
+
     with open("data/armor_player.json", "r", encoding="utf-8") as armor_file:
         armor_liste = json.load(armor_file)
         info_armor = random.choice(armor_liste)               # Choix armure random
@@ -375,6 +399,12 @@ def generate_player_armor(level_number):
 
 
 def loot_endlvl(level_number, player):
+    """Fonction gérant le loot en fin de niveau (arme/armure/item)
+    1) Fait gagner une potion au joueur grâce à la fonction player.add_potion()
+    2) Crée une arme, une armure et un item grâce aux 3 fonctions de générations (expliquées au préalable)
+    3) Affiche les différents choix et leurs descriptions
+    4) Crée une boucle infinie qui s'interrompt qu'une fois le choix fait.
+    5) Donne l'arme/armure au joueur, si il la choisit et si il choisit l'item; détermine le type de l'item, si c'est un buff, il est appliqué instantanément sinon l'item est rangé dans l'inventaire"""
     print("=======================================")
     time.sleep(2)
     print(f"{Colors.YELLOW}Récompense de fin du niveau {level_number} :{Colors.RESET}")
@@ -432,6 +462,9 @@ def loot_endlvl(level_number, player):
 
 
 def game_launcher():
+    """Fonction utilisée au démarrage du jeu
+    1) Lance la pseudo-cinématique et le titre du jeu
+    2) Explique brièvement le fonctionnement du jeu et ses différentes mécaniques """
     print("Bienvenue jeune aventurier dans le...")
     time.sleep(2)
     print(Colors.GREEN + r"""
@@ -457,7 +490,8 @@ def game_launcher():
     print("Et selon le résultat, vous toucherez +/- votre adversaire. Alors j'espère que c'est votre jour de chance :)")
 
 def set_seed():
-    print("Voulez-vous jouer avec une seed ? (évitez 'python'... laissez vide pour aléatoire)")
+    """Demande une seed (si vide -> seed aléatoire) et return la seed pour la fin de partie """
+    print("Voulez-vous jouer avec une seed ? (évitez 'python'... laissez vide pour aléatoire)")  #Easter egg
     seed_input = input("Seed -> ")
 
     if seed_input != "":
@@ -469,6 +503,22 @@ def set_seed():
         return "Seed random"
 
 def combat(player, mob):
+    """Fonction principale qui gère les combats
+    1) Présente le Mob
+    2) Crée une boucle de combat qui s'interrompt seulement si le joueur ou le mob meurt
+    3) Affiche les combattants, leurs stats principales et affiche les choix d'action du joueur
+    4) Initie le tour du joueur sur False (pas encore joué) et l'ennemi n'attaque pas tant que choix_action ≠ True
+    5.1) Si le joueur fait 1 -> Attaque grâce à la fonction prévue pour
+    5.2) Si le joueur fait 2 -> utilise une potion de soin grâce à la fonction
+    5.3) SI le joueur fait 3 -> Commence par vérifier si inventaire vide. Si pas, on demande au joueur l'item qu'il veut utiliser
+    et verifier que celui-ci est possible en regardant si l'indice choisi apparait dans la liste des choix crée juste avant
+    Si et seulement si c'est vrai, alors on convertit le choix du joueur en int (si on avait pas fait ca -> potentiel crash)
+    Finalement, l'item est utilisé comme voulu
+    6) Si l'action est valide, choix_action devient True et c'est alors au tour du mob (avant vérifie si mob est en vie sinon il attaque même étant mort)
+    Si pas, rien ne se passe et la boucle est relancée jusqu'à ce qu'un choix valide soit fait
+    7) Le mob attaque le joueur et la boucle de combat est relancée tant que personne ne meurt (si joueur meurt -> game over) """
+
+
     print("Un monstre sauvage apparaît !!! (pas le budget pour la musique)")
     time.sleep(1)
     mob.welcome()
@@ -531,11 +581,19 @@ def combat(player, mob):
     return False                                # Au cas ou y a un bug
 
 def main():                                     # Lance le jeu
+    """Fonction principale du jeu
+    1) Joue l'intro et demande la seed
+    2) Le jouer écrit son nom et la class Player défini le joueur
+    3) La présentation du joueur se lance
+    4) Crée une boucle infinie qui va enchainer les levels
+    5) Le niveau commence: un mob est crée, et le combat se lance jusqu'à la fin de celui-ci
+    6) Si joueur meurt-> Game over. Si il gagne -> il choisit une récompense et accède au level suivant et ainsi de suite"""
+
     game_launcher()
     seed_game = set_seed()
     print("Quel est ton nom, jeune padawan ?")
     name = input("-> ")
-    joueur = Player(name, 120, 40)              # defini le joueur grace a la class Player
+    joueur = Player(name, 120, 40)
     joueur.welcome()
 
     level = 0                 # On commence au niveau 0 (tuto pour pas se faire one shot au début)
