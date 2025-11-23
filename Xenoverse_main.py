@@ -265,7 +265,7 @@ class Mob:
             print("Il vous effleure")
             bonus_malus_dé -= 0.3  # dégats diminué de 30%
         elif dé_20 >= 18:
-            print("Coup CRITIQUE! (dégâts doublés)")  # degats x2
+            print(Colors.RED+"Coup CRITIQUE!"+Colors.RESET +"(dégâts doublés)")  # degats x2
             bonus_malus_dé += 1
         else:
             print("Coup réussi")  # dégats normaux
@@ -593,7 +593,7 @@ def main():                                     # Lance le jeu
     seed_game = set_seed()
     print("Quel est ton nom, jeune padawan ?")
     name = input("-> ")
-    joueur = Player(name, 120, 40)
+    joueur = Player(name, 130, 40)
     joueur.welcome()
 
     level = 0                 # On commence au niveau 0 (tuto pour pas se faire one shot au début)
