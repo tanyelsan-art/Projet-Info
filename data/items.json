@@ -15,11 +15,6 @@
   "description": "soigne 30 PV",
   "type": "heal",
   "value": 30},
- {"name": "potion",
-  "description": "soigne 30 PV",
-  "type": "heal",
-  "value": 30},
-
 
   {"name": "Death Note",
     "description": "One shot l'ennemi",

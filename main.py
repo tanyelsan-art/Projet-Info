@@ -12,8 +12,16 @@ from mob import generate_mob
 
 
 def game_launcher():
-    print("Bienvenue dans le Xenoverse jeune aventurier")
-    time.sleep(1)
+    print("Bienvenue jeune aventurier dans le...")
+    time.sleep(2)
+    print(Colors.GREEN + r"""
+       _   __ _______   ______ _    ____________  _____ ______
+      | |/ // ____/ | / / __ \ |   / / ____/ __ \/ ___// ____/
+      |   // __/ /  |/ / / / / | / / __/ / /_/ /\__ \/ __/
+     /   |/ /___/ /|  / /_/ /| |/ / /___/ _, _/___/ / /___
+    /_/|_/_____/_/ |_/\____/ |___/_____/_/ |_|/____/_____/
+    """ + Colors.RESET)
+    time.sleep(2)
     print("Ici, nul ne sait sur quoi tu vas tomber…(si ce n'est des entités dont on ne possède pas les droits d'auteur:))")
     time.sleep(1)
     print("Alors prépare toi au pire comme au meilleur. Bon courage!, tu vas en avoir besoin.")
