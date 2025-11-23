@@ -20,7 +20,7 @@ def loot_endlvl(level_number,player):
 
     print(f"1) Arme: {choix1_weapon.name}")
     print(f"   Infos:{choix1_weapon.description}")
-    print(f"   Stats:{choix1_weapon.damage } dégats")
+    print(f"   Stats:{choix1_weapon.damage } dégats supp")
 
     print(f"2) Armure: {choix2_armor.name}")
     print(f"   Infos:{choix2_armor.description}")

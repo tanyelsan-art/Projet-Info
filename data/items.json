@@ -76,12 +76,12 @@
   },
   {
   "name": "Livre enchanté (Sharpness III)",
-  "description": "Augmente votre att de manière permanente",
+  "description": "Augmente votre att de manière permanente(15)",
     "type": "buff_att",
     "value": 15
   },{
   "name": "Livre enchanté (Sharpness III)",
-  "description": "Augmente votre att de manière permanente",
+  "description": "Augmente votre att de manière permanente(15)",
     "type": "buff_att",
     "value": 15
   },

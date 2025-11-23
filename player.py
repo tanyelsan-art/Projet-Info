@@ -74,7 +74,7 @@ class Player:
         return self.weapon is not None
 
     def set_weapon(self,weapon):                    #Remplace l'arme de self par une nouvelle
-        print(self.name,"a équipé",'"',weapon.name,'"',"(Dégats:",weapon.get_damage_value(),")")
+        print(self.name,"a équipé",'"',weapon.name,'"',"(Dégats supp:",weapon.get_damage_value(),")")
         self.weapon=weapon
 
     def has_armor(self):

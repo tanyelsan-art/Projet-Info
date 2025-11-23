@@ -40,7 +40,7 @@ def combat(player,mob):
     mob.welcome()
 
     while player.hp>0 and mob.hp>0:
-        print(f"{player.name} ({player.hp}/{player.hp_max}PV) VS {mob.name} ({mob.hp}PV)")
+        print(f"{player.name} {player.hp}/{player.hp_max}PV ({player.att} dégats de base)   VS   {mob.name} ({mob.hp}PV)")
         time.sleep(1)
         print("1) Attaquer")
         print(f"2) Boire potion ({player.potions} restante(s) )")
