@@ -327,7 +327,7 @@ def generate_mob(level_number):
             armor=mob_armor)
     return new_mob
 
-base_damage_weapon = 10                 #Stat de base des armes
+base_damage_weapon = 15                 #Stat de base des armes
 
 class Weapon:
     """ Class des armes (utilisée dans generate_mob() et en fin de niveau dans generate_weapon()"""
@@ -364,7 +364,7 @@ def generate_weapon(level_number):
     return new_weapon
 
 
-base_armor_stats = 10           #stats de base des armures
+base_armor_stats = 15           #stats de base des armures
 
 class Armor:
     """Class des armures"""
