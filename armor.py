@@ -18,7 +18,7 @@ def generate_player_armor(level_number):
         armor_liste=json.load(armor_file)
         info_armor=random.choice(armor_liste)               #Choix armure random
 
-        armor_coef=1+(level_number*0.3)
+        armor_coef=1+(level_number*0.25)
         final_armor_points=int(base_armor_stats*armor_coef)     #Calcul de l'armure
 
         new_armor=Armor(

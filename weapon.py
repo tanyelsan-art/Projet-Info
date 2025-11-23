@@ -23,7 +23,7 @@ def generate_weapon(level_number):
         list_weapons_json=json.load(f)
 
     info_weapons=random.choice(list_weapons_json)             #Choisi une arme random
-    coef_damage_weapon = 1+(level_number*0.3)
+    coef_damage_weapon = 1+(level_number*0.25)
     final_damage=int(base_damage_weapon*coef_damage_weapon)     #Calcul les degats d'armes
 
     new_weapon= Weapon(

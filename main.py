@@ -23,7 +23,7 @@ def game_launcher():
     time.sleep(0.5)
     print("Et selon le résultat, vous toucherez +/- votre adversaire; alors j'espère que c'est votre jour de chance :)")
 def set_seed():
-    print("Voulez-vous jouez avec une seed ? (évitez la 67... laissez vide pour aléatoire)")
+    print("Voulez-vous jouez avec une seed ? (laissez vide pour aléatoire)")
     seed_input=input("Seed->")
 
     if seed_input!="":
@@ -88,6 +88,7 @@ def combat(player,mob):
             print("Tour du monstre:")
             mob.attack_target(player)
             print('============================================================')
+            time.sleep(1.5)
 
 
         if player.hp<=0:

@@ -75,7 +75,7 @@ def generate_mob(level_number):
         with open("data/mob_dico.json","r",encoding="utf-8") as f:
             mobs_list =json.load(f)
         info_mob=random.choice(mobs_list)                           #Choisi un mob random
-        difficulty_coef=1+(level_number*0.35)
+        difficulty_coef=1+(level_number*0.30)
 
         info_weapon=info_mob["weapon_ref"]                          #Construction de l'arme du mob (objet)
         final_damage=int(info_weapon["base_damage"]*difficulty_coef)

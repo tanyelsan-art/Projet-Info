@@ -92,7 +92,7 @@ class Player:
             heal_val=min(HP_manquant,potion_heal_val)               #Afin de pas regen + que pv max
             self.hp+=heal_val
             self.potions-=1
-            print(f"{self.name} boit une potion et récupère {heal_val} PV! (Reste{self.potions} potion(s)")
+            print(f"{self.name} boit une potion et récupère {heal_val} PV! (Reste{self.potions} potion(s))")
         else:
             print("Vous n'avez plus de potion")
 
