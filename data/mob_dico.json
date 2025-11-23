@@ -55,12 +55,12 @@
   },
   {
     "name": "Creeper",
-    "base_HP": 40,
+    "base_HP": 35,
     "weapon_ref": {"name": "Explosion","base_damage":80},
     "armor_points": 0
   },{
     "name": "Creeper",
-    "base_HP": 40,
+    "base_HP": 35,
     "weapon_ref": {"name": "Explosion","base_damage":80},
     "armor_points": 0
   },
