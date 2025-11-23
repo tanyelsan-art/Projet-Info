@@ -5,6 +5,7 @@ from weapon import  generate_weapon
 from armor import generate_player_armor
 
 def loot_endlvl(level_number,player):
+    print("=======================================")
     time.sleep(2)
     print(f"Récompense de fin du niveau {level_number} :")
     time.sleep(1)

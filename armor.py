@@ -1,7 +1,7 @@
 import random
 import json
 
-base_armor_stats =5
+base_armor_stats =10
 
 class Armor:
     def __init__(self,name,description,armor_point):

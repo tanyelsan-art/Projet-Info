@@ -78,24 +78,24 @@
   "name": "Livre enchanté (Sharpness III)",
   "description": "Augmente votre att de manière permanente",
     "type": "buff_att",
-    "value": 3
+    "value": 15
   },{
   "name": "Livre enchanté (Sharpness III)",
   "description": "Augmente votre att de manière permanente",
     "type": "buff_att",
-    "value": 3
+    "value": 15
   },
   {
   "name": "Carapace bleue",
-  "description": "Fonce sur l'ennemi et inflige 50 dégats (à vous la première place)",
+  "description": "Fonce sur l'ennemi et inflige 70 dégats (à vous la première place)",
   "type": "offensive",
-  "value": 50
+  "value": 70
   },
   {
   "name": "Carapace bleue",
-  "description": "Fonce sur l'ennemi et inflige 50 dégats (à vous la première place)",
+  "description": "Fonce sur l'ennemi et inflige 70 dégats (à vous la première place)",
   "type": "offensive",
-  "value": 50
+  "value": 70
   },
   {"name": "Golden apple",
     "description": "Augmente les PV max de 30",

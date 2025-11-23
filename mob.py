@@ -58,7 +58,7 @@ class Mob:
             else:
                 damage=int(self.att*bonus_malus_dé)
         if damage>0:
-            print(self.name, "attaque", target.name, "et inflige",damage, "dégat(s)")
+            print(f"{self.name} attaque {target.name} avec {self.weapon.name} et inflige {damage} dégat(s)")
             target.take_damage(damage)
         else:
             print(self.name,"attaque",target.name,"mais c'est inéfficace")

@@ -1,7 +1,6 @@
 import random
 import time
 
-
 class Player:
     def __init__(self,name,hp,att):             #Id card (stats+equip)
         self.name = name
@@ -60,8 +59,13 @@ class Player:
             else:
                 damage=int(self.att*bonus_malus_dé)
         if damage>0:
-            print(self.name, "attaque", target.name, "et lui inflige",damage, "dégat(s)")
-            target.take_damage(damage)
+            if self.has_weapon():
+                print(f"{self.name} attaque {target.name} avec {self.weapon.name}et lui inflige {damage} dégat(s)")
+                target.take_damage(damage)
+            else:
+                print(f"{self.name} attaque {target.name} et lui inflige {damage} dégat(s)")
+                target.take_damage(damage)
+
         else:
             print(self.name,"attaque",target.name,"mais c'est inéfficace")
 
@@ -80,7 +84,7 @@ class Player:
         self.armor=armor
 
     def use_potion(self):
-        potion_heal_val=int(self.hp_max*0.30)
+        potion_heal_val=int(self.hp_max*0.40)
 
         if self.potions>0:
             HP_manquant=self.hp_max-self.hp
@@ -114,13 +118,13 @@ class Player:
             item_used=self.inventory.pop(index)         #Pop supp l'item et le renvoi
             print(f"Vous utilisez:{item_used.name} ")
 
-            if item_used.type == "heal":                    #Verfie le type de l'item
+            if item_used.item_type == "heal":                    #Verfie le type de l'item
                 HP_manquant=self.hp_max-self.hp
                 heal_val=min(HP_manquant,item_used.value)           #Afin de pas regen + que pv max
                 self.hp+=heal_val
                 print(item_used.get_stats_effects())
 
-            if item_used.type == "offensive":
+            if item_used.item_type == "offensive":
                 print(item_used.get_stats_effects())
                 target_mob.take_damage(item_used.value)
             return True
